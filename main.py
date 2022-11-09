@@ -49,7 +49,7 @@ class Coordinate:
 class Level:
     def __init__(self, number, userStartDimention):
         self.number = number
-        self.userDimention = (userStartDimention + 1)
+        self.userDimention = (userStartDimention + number - 1)
 
     def returnDimention(self):
         return self.userDimention
@@ -72,6 +72,7 @@ print("Gra polega na jak najszybszym dotarciu do jabłka (oznaczony symbole O)."
 print("Staraj się uzyskać jak najmniej punktów")
 print("Omijaj skały (R)")
 print("Uważaj na przeszkody (D)")
+print("Co 5 Twoich ruchów jabłko zmienia położenie. Śpiesz się")
 print("Powodzenia :)")
 while(True):
     userNumberLevel = int(input("Podaj liczbę poziomów: "))
@@ -124,6 +125,11 @@ while (numberLevel <= userNumberLevel):
         playGame()
         move = input("Podaj wybór:")
         result += 1
+        if result%5 == 0 and result != 0:
+            while (True):
+                apple = coordinate.drawCoordinate()
+                if apple[0] != player[0] or apple[1] != player[1]:
+                    break
         while (move not in choice):
             move = input("Podaj wybór:")
         if (move == "A"):
